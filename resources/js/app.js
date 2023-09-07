@@ -1,5 +1,6 @@
 import './bootstrap';
 import '../css/app.css';
+import 'vue-select/dist/vue-select.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
@@ -9,6 +10,11 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { i18nVue } from 'laravel-vue-i18n'
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+
+import { Link, Head } from '@inertiajs/inertia-vue3';
+import BaseLayout from '@/Layouts/BaseLayout.vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -22,7 +28,11 @@ createInertiaApp({
                     const langs = import.meta.glob('../../lang/*.json');
                     return await langs[`../../lang/${lang}.json`]();
                 }
-            })
+             })
+            .component('Link', Link)
+            .component('Head', Head)
+            .component('BaseLayout', BaseLayout)
+            .component('AuthenticatedLayout', AuthenticatedLayout)
             .mount(el);
     },
 });

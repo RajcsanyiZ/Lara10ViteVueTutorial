@@ -5,12 +5,14 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/inertia-vue3';
+import ToastList from "@/Components/ToastList.vue";
 
 const showingNavigationDropdown = ref(false);
+
 </script>
 
 <template>
+    <ToastList></ToastList>
     <div>
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
@@ -31,6 +33,9 @@ const showingNavigationDropdown = ref(false);
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     {{ $t('Dashboard') }}
+                                </NavLink>
+                                <NavLink :href="route('projects.index')" :active="route().current('projects.index')">
+                                    {{ $t('Projects') }}
                                 </NavLink>
                             </div>
                         </div>
@@ -115,6 +120,9 @@ const showingNavigationDropdown = ref(false);
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             {{ $t('Dashboard')}}
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('projects.index')" :active="route().current('projects')">
+                            {{ $t('Projects')}}
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -137,7 +145,7 @@ const showingNavigationDropdown = ref(false);
             </nav>
 
             <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
+            <header class="border-b border-b-white shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
